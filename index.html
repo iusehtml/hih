@@ -27,7 +27,7 @@
   function signUpWithEmail() {
     const { createClient } = supabase
     const supabase = createClient('https://lmwciaolnwzppywullxo.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imxtd2NpYW9sbnd6cHB5d3VsbHhvIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NzMzNjcwNDEsImV4cCI6MTk4ODk0MzA0MX0.pLGYo9-WHOznEmCVzHLvj6I_LJC7456cHjUtvwyQqIk')
-    supabase.auth.signIn({ provider: 'google' })
+    supabase.auth.signInWithOAuth({ provider: 'google' })
   }
 
   // async function signInWithGoogle() {
