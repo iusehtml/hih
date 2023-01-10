@@ -12,29 +12,33 @@
   <div class="con">
     <input type="text" id="uname" required>
     <input type="password" id="psw" required>
-    <button onclick="signInWithGoogle()">Login</button>
+    <button onclick="signUpWithEmail()">Login</button>
   </div>
   <div id="main">
     You have logged in.
     <button onclick="logout()">Sign Out</button>
   </div>
+  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
 </body>
-<script src="https://unpkg.com/@supabase/supabase-js@2">
+<script>
   import { createClient } from '@supabase/supabase-js'
 
   // Create a single supabase client for interacting with your database
-  const supabase = createClient('https://lmwciaolnwzppywullxo.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imxtd2NpYW9sbnd6cHB5d3VsbHhvIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NzMzNjcwNDEsImV4cCI6MTk4ODk0MzA0MX0.pLGYo9-WHOznEmCVzHLvj6I_LJC7456cHjUtvwyQqIk')
+  function signUpWithEmail() {
+    const { createClient } = supabase
+    const supabase = createClient('https://lmwciaolnwzppywullxo.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imxtd2NpYW9sbnd6cHB5d3VsbHhvIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NzMzNjcwNDEsImV4cCI6MTk4ODk0MzA0MX0.pLGYo9-WHOznEmCVzHLvj6I_LJC7456cHjUtvwyQqIk')
+    supabase.auth.signIn({ provider: 'google' })
+  }
 
-  async function signInWithGoogle() {
-    const { data, error } = await supabase.auth.signInWithOAuth({
-      provider: 'google',
-    })
-  } 
+  // async function signInWithGoogle() {
+  //   const { data, error } = await supabase.auth.signInWithOAuth({
+  //     provider: 'google',
+  //   })
+  // } 
 
 
   const { data, error } = await supabase.auth.refreshSession()
-const { session, user } = data
-</script>
+  const { session, user } = data
 </script>
 
 </html>
